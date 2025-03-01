@@ -1,0 +1,70 @@
+{
+	// Place your Projects workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+		"Appwrite Auth Service": {
+		  "prefix": "appwrite-auth",
+		  "body": [
+			"import config from \"../config/config\";",
+			"import { Client, Account, ID } from \"appwrite\";",
+			"",
+			"export class AuthService {",
+			"\tclient = new Client();",
+			"\taccount;",
+			"",
+			"\tconstructor() {",
+			"\t\tthis.client",
+			"\t\t\t.setEndpoint(config.appwriteUrl)",
+			"\t\t\t.setProject(config.appwriteProjectId);",
+			"\t\tthis.account = new Account(this.client);",
+			"\t}",
+			"",
+			"\tasync createAccount({ email, password, name }) {",
+			"\t\ttry {",
+			"\t\t\tconst userAccount = await this.account.create(ID.unique(), email, password, name);",
+			"\t\t\tif (userAccount) {",
+			"\t\t\t\treturn this.login({ email, password });",
+			"\t\t\t} else {",
+			"\t\t\t\treturn userAccount;",
+			"\t\t\t}",
+			"\t\t} catch (error) {",
+			"\t\t\tthrow error;",
+			"\t\t}",
+			"\t}",
+			"",
+			"\tasync login({ email, password }) {",
+			"\t\ttry {",
+			"\t\t\treturn await this.account.createEmailSession(email, password);",
+			"\t\t} catch (error) {",
+			"\t\t\tthrow error;",
+			"\t\t}",
+			"\t}",
+			"",
+			"\tasync getCurrentUser() {",
+			"\t\ttry {",
+			"\t\t\treturn await this.account.get();",
+			"\t\t} catch (error) {",
+			"\t\t\tconsole.log(\"Appwrite service :: getCurrentUser :: error\", error);",
+			"\t\t}",
+			"\t\treturn null;",
+			"\t}",
+			"",
+			"\tasync logout() {",
+			"\t\ttry {",
+			"\t\t\treturn await this.account.deleteSessions();",
+			"\t\t} catch (error) {",
+			"\t\t\tconsole.log(\"Appwrite service :: logout :: error\", error);",
+			"\t\t}",
+			"\t}",
+			"}",
+			"",
+			"const authService = new AuthService();",
+			"export default authService;"
+		  ],
+		  "description": "Appwrite authentication service with methods for account creation, login, user retrieval, and logout"
+		}
+  }
