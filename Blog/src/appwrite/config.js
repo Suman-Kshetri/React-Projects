@@ -19,7 +19,7 @@ export class Service{
             return await this.databases.createDocument(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
-                slug,
+                slug,//unique document ID
                 {
                     title,
                     content,
@@ -79,6 +79,53 @@ export class Service{
             console.log("Appwrite service :: getPost :: error",error);
             return false;
         }
+    }
+    //acessing the posts that has query of status type active
+    async getPosts(queries = [Query.equal("status", "active")]){
+        try {
+            return await this.databases.listDocuments(
+                config.appwriteDatabaseId,
+                config.appwriteCollectionId,
+                queries,
+            )
+        } catch (error) {
+            console.log("Appwrite service :: getPosts :: error",error);
+            return false;
+        }
+    }
+    //file upload function
+    async uploadFile(file){
+        try {
+            return await this.bucket.createFile(
+                config.appwriteBucketId,
+                ID.unique(),
+                file
+            );
+        } catch (error) {
+            console.log("Appwrite service :: uploadFile :: error",error);
+            return false;
+        }
+    }
+    // delete file
+    async deleteFile(fileId){
+        try {
+            return await this.bucket.deleteFile(
+                config.appwriteBucketId,
+                fileId
+            );
+            return true;
+        } catch (error) {
+            console.log("Appwrite service :: deleteFile :: error",error);
+            return false;
+        }
+    }
+
+    //file preview
+    getFilePreview(fileId){
+        return this.bucket.getFilePreview(
+            config.appwriteBucketId,
+            fileId
+        )
     }
 
 };
