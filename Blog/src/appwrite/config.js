@@ -81,6 +81,7 @@ export class Service{
         }
     }
     //acessing the posts that has query of status type active
+    //queries → Applies filtering conditions ie:only when the status is active then only it will show the post
     async getPosts(queries = [Query.equal("status", "active")]){
         try {
             return await this.databases.listDocuments(
