@@ -1,35 +1,35 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import {login as authLogin,logout as authLogout} from '../store/authSlice'
+import {login as authLogin} from '../store/authSlice'
 import {Button, Input, Logo } from './index'
 import { useDispatch } from 'react-redux'
 import authService from '../appwrite/auth'
 import { useForm } from 'react-hook-form'
-
-const login = async (data) => {
-    setError("");
-    console.log("Login Data: ",data)
-    try {
-        const session = await authService.login(data);
-        if(session){
-            const userData = await authService.getCurrentUser();
-            if(userData){
-            dispatch(authLogin(userData));
-            }
-            navigate("/");
-            //if we use link then we can directly navigate but if we use link then we have to click on the button to navigate
-
-        }
-    } catch (error) {
-        setError(error.message);
-}}
 
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm();
     const [error, setError] = useState("")
+    
+    const login = async (data) => {
+        setError("");
+        console.log("Login Data: ",data)
+        try {
+            const session = await authService.login(data);
+            if(session){
+                const userData = await authService.getCurrentUser();
+                if(userData){
+                dispatch(authLogin(userData));
+                }
+                navigate("/");
+                //if we use link then we can directly navigate but if we use link then we have to click on the button to navigate
+    
+            }
+        } catch (error) {
+            setError(error.message);
+    }}
 
   return (
     <div
