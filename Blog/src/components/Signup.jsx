@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
-import {authService} from '../appwrite/auth'
+import { AuthService as authService} from '../appwrite/auth'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import {login as authlogin }  from '../store/authSlice'
@@ -86,9 +86,9 @@ function Signup() {
                     }
                  })}
                   />
-                  <button type='submit' 
+                  <Button type='submit' 
                   className='w-full'
-                  > Create Account</button>
+                  > Create Account</Button>
               </div>
             </form>
       </div>

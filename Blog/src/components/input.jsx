@@ -25,7 +25,7 @@ const Input = React.forwardRef( function Input ({
     )
 })
 
-export default input
+export default Input
 
 // forwardRef is a function in React that allows a parent component to pass a ref to a child component. 
 // This is useful when you need direct access to a DOM element inside a child component, 
