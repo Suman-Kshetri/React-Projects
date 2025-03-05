@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
-import { AuthService as authService} from '../appwrite/auth'
+import authService from '../appwrite/auth'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import {login as authlogin }  from '../store/authSlice'

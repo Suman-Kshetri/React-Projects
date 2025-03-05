@@ -36,7 +36,7 @@ function App() {
       <Header/>
       <main>
         Hello
-        {/* <Outlet/> */}
+        <Outlet/>
       </main>
       <Footer/>
   </StrictMode>
