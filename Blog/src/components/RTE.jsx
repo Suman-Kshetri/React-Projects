@@ -2,7 +2,7 @@ import React from 'react'
 import {Editor} from '@tinymce/tinymce-react'
 import { Controller } from 'react-hook-form'
 
-
+// The Controller component from React Hook Form connects the TinyMCE editor to the form
 export default function RTE({
     name, control, label, defaultValue = "",
 
