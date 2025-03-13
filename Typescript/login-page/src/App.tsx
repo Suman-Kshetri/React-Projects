@@ -1,9 +1,8 @@
-import StatefulLoginForm from "./components/StatefulLoginForm";
 
 const App = () => {
   return (
     <div className="flex items-center justify-center h-screen">
-      <StatefulLoginForm />
+      {/* Your app content goes here but for normal no need in tanstark router*/}
     </div>
   );
 };
